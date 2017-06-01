@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <div id="app-2">
+        <span v-bind:title="message">
+            鼠标停留几秒
+        </span>
+    </div>
+    <div id="app-3">
+        <h1 v-if="seen">你看到我了,2后消失</h1>
+    </div>
+    <div id="app-4">
+
+        <ol>
+            <li v-for="things in todos">{{things.todo}}</li>
+        </ol>
+    </div>
+    <div id="app-5">
+        <p>{{message}}</p>
+        <input type="button" value="逆转" v-on:click="reverseMessage">
+        <button v-on:click="reverseMessage">逆转</button>
+    </div>
+    <div id="app-6">
+        <p>{{message}}</p>
+        <input type="text" v-model="message">
+    </div>
+
+    <div id="app-7">
+        <ol>
+            <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+        </ol>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            message:"Hello Vue!"
+        }
+    })
+    var app2 = new Vue({
+        el:"#app-2",
+        data:{
+            message:"页面加载于"+new Date()
+        }
+    })
+    var app3 = new Vue({
+        el:"#app-3",
+        data:{
+            seen:true
+        }
+    })
+    setTimeout(function () {
+        app3.seen = false
+    },2000)
+
+
+</script>
+<script>
+    var app4 = new Vue({
+        el:"#app-4",
+        data:{
+            todos:[
+                {todo:"吃早饭"},
+                { todo:"吃午餐"},
+                {todo:"吃晚饭"}
+            ]
+
+        }
+    })
+    var app5 = new Vue({
+        el:"#app-5",
+        data:{
+            message:"hello vue"
+        },
+        methods:{
+            reverseMessage :function () {
+                this.message = this.message.split('').reverse().join("");
+            }
+        }
+    })
+    var app6= new Vue({
+        el:"#app-6",
+        data:{
+            message:"hello vue !"
+        }
+    })
+</script>
+<script>
+    Vue.component("todo-item",{
+        props:["todo"],
+        template:"<li>{{todo.text}}</li>"
+    });//必须写在前面
+  var app7 =new Vue({
+      el:"#app-7",
+      data:{
+          groceryList:[
+              { text: '蔬菜' },
+              { text: '奶酪' },
+              { text: '随便其他什么人吃的东西' }
+          ]
+      }
+  })
+
+
+
+</script>
+</html>
