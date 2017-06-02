@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<h2>v-for</h2>
+<div id="app">
+    <ul>
+    <template v-for="todo in todos" >
+        <li >{{todo}}</li>
+    </template>
+    <li v-for="todo in todos" :key="todo.id">{{todo}}</li>
+    </ul>
+
+    <h3>注意 <small>由于 JavaScript 的限制,Vue 不能检测以下变动的数组：</small></h3>
+    <p>1.当你利用索引直接设置一个项时，例如： vm.items[indexOfItem] = newValue</p>
+    <p>2.当你修改数组的长度时，例如： vm.items.length = newLength</p>
+    第一种问题遇到可以Vue.set(example1.todos, indexOfItem, newValue)，或者example1.todos.splice(indexOfItem, 1, newValue)；<br>
+
+    第一种问题遇到可以example1.todos.splice(newLength)
+
+</div>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            todos:[
+                "eat",
+                "sleep",
+                "eat"
+            ]
+        }
+    })
+</script>
+</body>
+</html>

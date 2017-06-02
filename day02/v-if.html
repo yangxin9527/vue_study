@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<h2>v-if</h2>
+<div id="app">
+    <h3 v-if="ok">ok</h3>
+    <h3 v-else>no</h3>
+    <hr>
+    <h3 v-if=false>ok</h3>
+    <h3 v-else>no</h3>
+    <p>v-if 和v-else，v-else-if 必须相互挨着，否则它将不会被识别</p>
+    可以使用template,但template不会渲染在DOM中
+    <br>
+    <h3 v-show="false">v-show和v-if差不多，区别在于</h3>
+    <ol>
+        <li>v-if是'真正的'条件渲染</li>
+        <li>v-if也是惰性渲染，也就是说条件为假时，完全不渲染</li>
+        <li>v-show始终会渲染，但根据display属性来切换显示隐藏</li>
+        <li>v-show无法使用template</li>
+        <li>v-if 有更高的<b>切换开销</b>，而 v-show 有更高的<b>初始渲染开销</b>。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件不太可能改变，则使用 v-if 较好。</li>
+    </ol>
+
+</div>
+
+
+
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            ok:true,
+            no:false
+        }
+    })
+</script>
+</body>
+</html>

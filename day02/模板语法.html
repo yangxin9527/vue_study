@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<h3>插值</h3>
+
+<h6>(v-once)</h6>
+<div id="app">
+    <p >{{msg}}</p>
+    <p v-once>{{msg}}</p>
+
+</div>
+<h6>纯html(v-html)</h6>
+<div id="app2">
+    <div>{{html}}</div>
+    <div v-html="html"></div>
+</div>
+
+<h6>属性</h6>
+<p>Mustache({}) 不能在 HTML 属性中使用，应使用 v-bind 指令</p>
+<div id="app3">
+    <div v-bind:id="id">
+        v-bind:id=" "
+    </div>
+    <button v-bind:disabled="disabled">disabled</button>
+</div>
+
+
+
+<h6>JavaScript 表达式</h6>
+<p>javaScript能被解析，但只能包含单个表达式，比如3元表达式，若使用if(){}则不会生效</p>
+<div id="app4">
+    <p>{{condition}}</p>
+    <p>{{condition?1:0}}</p>
+
+</div>
+<h6>指令</h6>
+<div>
+    <pre>
+            <a v-bind:href="url">v-bind:href="url"</a>
+            <a v-on:click="doSomething"> v-on:click="doSomething"</a>
+    </pre>
+
+</div>
+<h6>修饰符</h6>
+<hr>
+<h6>过滤器</h6>
+<p>
+    过滤器只能在 mustache 绑定和 v-bind 表达式（从 2.1.0 开始支持）中使用，因为过滤器设计目的就是用于文本转换。为了在其他指令中实现更复杂的数据变换，你应该使用计算属性。
+</p>
+<hr>
+<h6>缩写</h6>
+<div>
+    <p>v-bind:href="url" => :href="url"</p>
+    v-on:click = "doSomething"  =>  @click="doSomething"
+</div>
+<script>
+    var app =new Vue({
+        el:"#app",
+        data:{
+            msg:"hello"
+        }
+    });
+    var app2 =new Vue({
+        el:"#app2",
+        data:{
+            html:"<input type='name' /> "
+        }
+    })
+    var app3 =new Vue({
+        el:"#app3",
+        data:{
+            id:"head",
+            disabled:"disabled"
+        }
+    })
+    var app4 = new Vue({
+        el:"#app4",
+        data:{
+            condition:true
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<h2>计算</h2>
+<p>复杂逻辑使用计算属性，简单计算使用{}或者v-bind</p>
+<div id="app">
+
+    <p>{{message}}</p>
+    <p>{{reversedMessage}}</p>
+    <p>{{now}}</p>
+    <div>
+        <h4>计算缓存 vs Methods </h4>
+        <p>计算属性是基于它们的依赖进行缓存的，所以规避了重复计算</p>
+    </div>
+    <hr>
+    <p>观察 Watchers,又有区别：</p>
+    <p>当你想要在数据变化响应时，执行异步操作或开销较大的操作，这是很有用的。</p>
+</div>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello"
+        },
+        computed:{
+            reversedMessage:function () {
+                return this.message.split('').reverse().join('')
+            },
+            now:function () {
+                return Date.now()
+            }
+        }
+    })
+</script>
+</body>
+</html>

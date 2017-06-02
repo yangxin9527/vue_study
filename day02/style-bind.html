@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .span-test{
+            padding:10px;
+            border:1px solid #333;
+            display: block;
+        }
+        .active{
+            text-decoration:underline;
+        }
+        .text-danger{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h2>class绑定</h2>
+    <span class="span-test" v-bind:class="{active:isActive}">提示</span>
+    <span class="span-test" v-bind:class="{'active':isActive,'text-danger':isDanger}">提示</span>
+
+    <span class="span-test" v-bind:class="classObject">class object</span>
+    <div>
+        this.isActive = !this.isActive;<br>
+        this.isDanger = !this.isDanger;
+        <input type="button" v-on:click="change" value="change"><br>
+    </div>
+    <h2>style绑定</h2>
+    <div v-bind:style="cssObject">lalala,cssObject</div>
+    v-bind:style=后面还可以接数组[baseStyles, overridingStyles]
+</div>
+
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            isActive:true,
+            isDanger:true,
+            error:true,
+            cssObject:{
+                fontSize:"30px",
+                color:"green"
+            }
+        },
+        methods:{
+            change:function () {
+                this.isActive = !this.isActive;
+                this.isDanger = !this.isDanger;
+            }
+        },
+        computed:{
+            classObject:function () {
+                return {
+                    active:this.isActive,
+                    'text-danger':this.isDanger &&this.error
+                }
+            }
+        }
+
+    })
+</script>
+</body>
+</html>
