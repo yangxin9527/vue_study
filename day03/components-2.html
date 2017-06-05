@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>父组件传递给子组件，依靠props</h2>
+    <child message="1"></child><br>
+    <child2 my-message="hello!"></child2>
+    <p>动态绑定</p>
+    <input type="text" v-model="input">
+    <child3 v-bind:my-message="input"></child3>
+
+
+
+</div>
+<script>
+    Vue.component('child',{
+        props:['message'],
+        template:'<span>{{message}}</span>'
+    });
+    Vue.component('child2',{
+        props:['myMessage'],
+        template:'<span>{{myMessage}}</span>'
+    });
+    Vue.component('child3',{
+        props:['myMessage'],
+        template:'<span>{{myMessage}}</span>'
+    });
+    var app = new Vue({
+        el:"#app",
+        data:{
+            input:''
+        }
+    })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

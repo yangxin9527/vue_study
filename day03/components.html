@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>components</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>组件</h2>
+    <test-component>zssss</test-component>
+    <my-component></my-component>
+    <p>但是像这些元素 ul ，ol，table ，select 限制了能被它包裹的元素， 而一些像 option 这样的元素只能出现在某些其它元素内部。</p>
+    <span>因此会有问题比如table ：</span>
+    <br>
+    <br>
+    <table border="1">
+        <my-table></my-table>
+        <my-table></my-table>
+    </table>
+    <hr>
+    <p>这时使用 is="table"</p>
+    <table border="1">
+        <tr is="my-table" ></tr>
+        <tr is="my-table" ></tr>
+    </table>
+</div>
+<hr>
+<div id="app2">
+    <test-input></test-input>
+    <test-input></test-input>
+    <test-input></test-input>
+</div>
+<script>
+    //全局注册
+    Vue.component('test-component',{
+        template:'<h6>222222222222222222</h6>'
+    });
+    var Child = {
+        template: '<div>A custom component!</div>'
+    };
+    var Table = {
+        template:'<tr><td>dd</td><td>dd</td></tr>'
+    }
+    var app = new Vue({
+        el:"#app",
+        data:{
+            msg:'123'
+        },
+        components: {
+            // <my-component> 将只在父模板可用
+            'my-component': Child,
+            'my-table':Table
+        }
+    });
+    //参数 使用data return，每次返回，分别不相关
+    Vue.component('test-input',{
+        template:'<button v-on:click="counter++">{{counter}}</button>',
+        data:function () {
+            return {
+                counter :0
+            }
+        }
+    });
+
+
+    var app2 = new Vue({
+        el:"#app2"
+    });
+
+</script>
+</body>
+</html>

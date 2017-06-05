@@ -71,13 +71,11 @@
 
 
 <div id="app2">
-    <input type="text" v-model="message">
-    <p>复制的内容：{{1}}</p>
-    <p>粘贴区域：{{pasteData}}</p>
+    <input type="text" v-model="message" v-on:keyup.ctrl.67="copy" v-on:keyup.ctrl.86="paste">
     <h2>demo-copy</h2>
-
+    <p>复制的内容：{{copyData}}</p>
     <h2>demo-paste</h2>
-
+    <p>粘贴区域：{{pasteData}}</p>
 </div>
 <script>
     var app2 = new Vue({
@@ -90,7 +88,7 @@
         },
         methods:{
             copy:function () {
-                this.copyData = ""
+                this.copyData = this.message
             },
             paste:function () {
                 this.pasteData = this.copyData

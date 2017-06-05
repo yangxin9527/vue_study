@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>forms</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>基础v-model</h2>
+    {{message}}<br>
+    <input type="text" v-model="message" ><br>
+    <textarea v-model="message" name="" id="" cols="30" rows="10"></textarea>
+<br>
+    <input type="checkbox" value="yx" id="yx" v-model="checkNames"><label for="yx">yx</label>
+    <input type="checkbox" value="ab" id="ab" v-model="checkNames"><label for="ab">ab</label>
+    <input type="checkbox" value="ff" id="ff" v-model="checkNames"><label for="ff">ff</label>
+    <input type="checkbox" value="to" id="to" v-model="checkNames"><label for="to">to</label>
+
+    <p>{{checkNames}}</p>
+    <hr>
+    <select  name="option" id="option" v-model="option">
+        <option value="">全部</option>
+        <option value="1">北京</option>
+        <option value="3">成都</option>
+        <option value="5">重庆</option>
+    </select>
+    <p>{{option}}</p>
+
+    <hr>
+    <select  v-model="select">
+        <option v-for="item in options" v-bind:value="item.value">{{item.text}}</option>
+    </select>
+    <p>{{select}}</p>
+    <hr>
+    <br>
+    还可以绑定动态值，v-bind:true-value=
+    <input type="checkbox"
+            v-model="toggle"
+            v-bind:true-value="a"
+            v-bind:false-value="b"
+    >toggle<br>
+    {{toggle}}
+</div>
+
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            message:"",
+            checkNames:[],
+            option:[],
+            select:[],
+            options: [
+                { text: 'One', value: 'A' },
+                { text: 'Two', value: 'B' },
+                { text: 'Three', value: 'C' }
+            ],
+            toggle:'',
+            a:1,
+            b:0
+
+        }
+    })
+</script>
+<div id="app2">
+    ============================
+    <h2>修饰符</h2>
+    <ol>
+        <li>.lazy<br>
+            <input type="text" v-model.lazy="msg" />{{msg}}
+        </li>
+        <li>
+            .number<br>
+            <input type="text" v-model.number="msg2" />{{msg2}}
+        </li>
+        <li>
+            .trim<br>
+            <input type="text" v-model.trim="msg3" />{{msg3}}
+        </li>
+    </ol>
+</div>
+<script>
+    var app2= new Vue({
+        el:"#app2",
+        data:{
+            msg:"",
+            msg2:"",
+            msg3:""
+        }
+    })
+</script>
+</body>
+</html>
